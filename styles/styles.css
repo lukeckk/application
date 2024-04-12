@@ -5,5 +5,14 @@
 
 li{
     list-style-type: none;
-    padding: 0;
+}
+
+.bodyContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #c4e5ff;
+}
+
+em{
+    font-style: italic;
 }
