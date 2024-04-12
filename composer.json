@@ -1,0 +1,13 @@
+{
+  "name": "lukeecheng/328/application",
+  "authors": [
+    {
+      "name": "Luke Cheng",
+      "email": "cheng.luke@student.greenriver.edu"
+    }
+  ],
+  "require":
+  {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
