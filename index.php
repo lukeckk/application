@@ -1,6 +1,9 @@
-<?php
 
-//This is my controller
+<?php
+// Author: Luke Cheng
+// Date: 4/13/2024
+// Description: This PHP file serves as a controller using the Fat-Free Framework
+
 
 //Turn on error reporting
 ini_set('display_errors', 1);
