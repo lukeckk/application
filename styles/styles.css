@@ -16,3 +16,51 @@ li{
 em{
     font-style: italic;
 }
+
+.informationContainer{
+    background-color: #c4e5ff;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.jobContainer{
+    background-color: #c4e5ff;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+}
+
+.personalHeader{
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.jobHeader, #skill, #field{
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+.biography{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 6;
+}
+
+#note{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    background-color: lightgrey;
+}
+
+.email{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+#button{
+    background-color: limegreen;
+}

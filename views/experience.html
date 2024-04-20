@@ -1,0 +1,75 @@
+<!-- 328/hello-fat-free/views/home-page.html -->
+<!-- Author: Luke Cheng-->
+<!-- Date: 4/13/2024 -->
+<!-- Description: This HTML file represents the home page for a job application website -->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Job Application</title>
+</head>
+<body>
+<div class="navbarContainer">
+    <nav class="navbar ">
+        <ul class="list">
+            <li class="pb-3"><h6>FutureFusion LLC</h6></li>
+            <li><h3>Software Development Internship</h3></li>
+        </ul>
+    </nav>
+
+    <nav class="navbar">
+        <ul class="list">
+            <li class="pb-3"><h6>Seattle Washington, Paid, 12 Weeks</h6></li>
+        </ul>
+    </nav>
+</div>
+<form action="#" method="get">
+    <div class="informationContainer p-4">
+        <h3 class="border-bottom border-primary personalHeader">Experience</h3>
+
+        <div class="p-2 biography">
+            <label for="bio" >Biography</label><br>
+            <input type="text" name="bio" id="bio" class="form-control h-100">
+        </div>
+        <div class="p-2">
+            <label for="link" >Github Link</label><br>
+            <input type="text" name="link" id="link" class="form-control">
+        </div>
+        <div class="p-2">
+            <label>Years Experience</label><br>
+
+            <input type="radio" id="zero" name="zero" value="zero">
+            <label for="zero">0-2</label>
+
+            <input type="radio" id="two" name="two" value="two">
+            <label for="two">2-4</label>
+
+            <input type="radio" id="four" name="four" value="four">
+            <label for="four">4+</label>
+        </div>
+        <div class="p-2">
+            <label >Willing To Relocate</label><br>
+            <input type="radio" id="yes" name="yes" value="yes">
+            <label for="yes">Yes</label>
+
+            <input type="radio" id="no" name="no" value="no">
+            <label for="no">No</label>
+
+            <input type="radio" id="maybe" name="maybe" value="maybe">
+            <label for="maybe">Maybe</label>
+        </div>
+        <div class="p-2">
+            <label></label><br>
+            <input type="submit" value="Next" class="rounded form-control" id="button">
+        </div>
+    </div>
+</form>
+</body>
+</html>
