@@ -64,38 +64,66 @@ $f3->route('GET|POST /apply', function($f3){
 //Experience Page
 $f3->route('GET|POST /experience', function($f3){
 //    // If the form has been posted
-//    if ($_SERVER['REQUEST_METHOD'] == "POST") {
-//        //Get data from post array
-//        $firstName = $_POST['first'];
-//        $lastName = $_POST['last'];
-//        $email = $_POST['email'];
-//        $state = $_POST['state'];
-//        $phone = $_POST['phone'];
-//
-//        // If the data valid
-//        if (true) {
-//
-//            // Add the data to the session array
-//            $f3->set('SESSION.firstName', $firstName);
-//            $f3->set('SESSION.lastName', $lastName);
-//            $f3->set('SESSION.email', $email);
-//            $f3->set('SESSION.state', $state);
-//            $f3->set('SESSION.phone', $phone);
-//
-//            // Send the user to the next form
-//            $f3->reroute('experience');
-//
-//        } else {
-//            // Temporary
-//            echo "<p>Validation errors</p>";
-//        }
-//    }
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        //Get data from post array
+        $bio = $_POST['bio'];
+        $link = $_POST['link'];
+        $exp = $_POST['exp'];
+        $relocate = $_POST['relocate'];
+
+        // If the data valid
+        if (true) {
+
+            // Add the data to the session array
+            $f3->set('SESSION.bio', $bio);
+            $f3->set('SESSION.link', $link);
+            $f3->set('SESSION.exp', $exp);
+            $f3->set('SESSION.relocate', $relocate);
+
+            // Send the user to the next form
+            $f3->reroute('mailing-list');
+
+        } else {
+            // Temporary
+            echo "<p>Validation errors</p>";
+        }
+    }
 
     $view = new Template();
     echo $view->render('views/experience.html');
 });
 
 //Mailing Lists Page
+$f3->route('GET|POST /mailing-list', function($f3){
+//    // If the form has been posted
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        //Get data from post array
+        $bio = $_POST['bio'];
+        $link = $_POST['link'];
+        $exp = $_POST['exp'];
+        $relocate = $_POST['relocate'];
+
+        // If the data valid
+        if (true) {
+
+            // Add the data to the session array
+            $f3->set('SESSION.bio', $bio);
+            $f3->set('SESSION.link', $link);
+            $f3->set('SESSION.exp', $exp);
+            $f3->set('SESSION.relocate', $relocate);
+
+            // Send the user to the next form
+            $f3->reroute('mailing-list');
+
+        } else {
+            // Temporary
+            echo "<p>Validation errors</p>";
+        }
+    }
+
+    $view = new Template();
+    echo $view->render('views/mailing-list.html');
+});
 
 //Run Fat-Free
 $f3->run();
