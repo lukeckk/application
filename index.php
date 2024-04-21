@@ -22,7 +22,7 @@ $f3->route('GET /', function(){
 
 //    //Render a view page
     $view = new Template();
-    echo $view->render('views/home.html');
+    echo $view->render('views/summary.html');
 });
 
 //Personal Information Page
@@ -95,25 +95,22 @@ $f3->route('GET|POST /experience', function($f3){
 
 //Mailing Lists Page
 $f3->route('GET|POST /mailing-list', function($f3){
+    var_dump ( $f3->get('SESSION') );
 //    // If the form has been posted
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         //Get data from post array
-        $bio = $_POST['bio'];
-        $link = $_POST['link'];
-        $exp = $_POST['exp'];
-        $relocate = $_POST['relocate'];
+        $language = $_POST['language'];
+        $industry = $_POST['industry'];
 
         // If the data valid
         if (true) {
 
             // Add the data to the session array
-            $f3->set('SESSION.bio', $bio);
-            $f3->set('SESSION.link', $link);
-            $f3->set('SESSION.exp', $exp);
-            $f3->set('SESSION.relocate', $relocate);
+            $f3->set('SESSION.language', $language);
+            $f3->set('SESSION.industry', $industry);
 
             // Send the user to the next form
-            $f3->reroute('mailing-list');
+            $f3->reroute('summary');
 
         } else {
             // Temporary

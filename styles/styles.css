@@ -13,6 +13,24 @@ li{
     background-color: #c4e5ff;
 }
 
+.summaryBodyContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background-color: #c4e5ff;
+}
+
+.summaryLeftBody{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.summaryRightBody{
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+
+
 em{
     font-style: italic;
 }
@@ -64,3 +82,8 @@ em{
 /*#button{*/
 /*    background-color: limegreen;*/
 /*}*/
+
+.submitButton{
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
