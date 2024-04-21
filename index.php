@@ -22,7 +22,17 @@ $f3->route('GET /', function(){
 
 //    //Render a view page
     $view = new Template();
-    echo $view->render('views/summary.html');
+    echo $view->render('views/home.html');
+});
+
+//Return to home
+$f3->route('GET /home', function(){
+    //echo below is used for testing before executing the template
+//    echo '<h1>Hello Pets</h1>';
+
+//    //Render a view page
+    $view = new Template();
+    echo $view->render('views/home.html');
 });
 
 //Personal Information Page
@@ -95,12 +105,13 @@ $f3->route('GET|POST /experience', function($f3){
 
 //Mailing Lists Page
 $f3->route('GET|POST /mailing-list', function($f3){
-    var_dump ( $f3->get('SESSION') );
+//    var_dump ( $f3->get('SESSION') );
 //    // If the form has been posted
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         //Get data from post array
         $language = $_POST['language'];
         $industry = $_POST['industry'];
+
 
         // If the data valid
         if (true) {
@@ -108,6 +119,7 @@ $f3->route('GET|POST /mailing-list', function($f3){
             // Add the data to the session array
             $f3->set('SESSION.language', $language);
             $f3->set('SESSION.industry', $industry);
+
 
             // Send the user to the next form
             $f3->reroute('summary');
@@ -121,6 +133,18 @@ $f3->route('GET|POST /mailing-list', function($f3){
     $view = new Template();
     echo $view->render('views/mailing-list.html');
 });
+
+//Summary Page
+$f3->route('GET|POST /summary', function($f3){
+        var_dump ( $f3->get('SESSION') );
+    //echo below is used for testing before executing the template
+//    echo '<h1>Hello Pets</h1>';
+
+//    //Render a view page
+    $view = new Template();
+    echo $view->render('views/summary.html');
+});
+
 
 //Run Fat-Free
 $f3->run();
