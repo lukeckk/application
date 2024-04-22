@@ -1,7 +1,8 @@
 <!-- 328/hello-fat-free/views/home-page.html -->
 <!-- Author: Luke Cheng-->
-<!-- Date: 4/13/2024 -->
-<!-- Description: This HTML file represents the home page for a job application website -->
+<!-- Date: 4/21/2024 -->
+<!--File Name: summary.html-->
+<!-- Description: This HTML file represents the summary page for a job application-->
 
 
 <!doctype html>
@@ -44,7 +45,7 @@
             <p class="border-bottom border-secondary p-2">Github link: {{ @SESSION.link }}</p>
             <p class="border-bottom border-secondary p-2">Experience: {{ @SESSION.exp }} years</p>
             <p class="border-bottom border-secondary p-2">Willing to Relocate: {{ @SESSION.relocate }}</p>
-            <p class="p-2">Mailing lists: {{ @SESSION.language }} {{ @SESSION.industry}}</p>
+            <p class="p-2">Mailing lists: {{ @SESSION.language }}, {{ @SESSION.industry}}</p>
         </div>
     </div>
 
@@ -55,7 +56,7 @@
     </div>
 
     <div class="submitButton">
-        <a type="button" class=" btn btn-success form-control" href="apply">Submit My Application</a>
+        <a type="button" class=" btn btn-success form-control" href="">Submit My Application</a>
     </div>
 </div>
 

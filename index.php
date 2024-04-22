@@ -109,8 +109,20 @@ $f3->route('GET|POST /mailing-list', function($f3){
 //    // If the form has been posted
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         //Get data from post array
-        $language = $_POST['language'];
-        $industry = $_POST['industry'];
+//        $language = $_POST['language'];
+//        $industry = $_POST['industry'];
+
+        // Get the data from the post array language
+        if (isset($_POST['language']))
+            $language = implode(", ", $_POST['language']);
+        else
+            $language = "None selected";
+
+        // Get the data from the post array language
+        if (isset($_POST['industry']))
+            $industry = implode(", ", $_POST['industry']);
+        else
+            $industry = "None selected";
 
 
         // If the data valid
@@ -136,7 +148,7 @@ $f3->route('GET|POST /mailing-list', function($f3){
 
 //Summary Page
 $f3->route('GET|POST /summary', function($f3){
-        var_dump ( $f3->get('SESSION') );
+//        var_dump ( $f3->get('SESSION') );
     //echo below is used for testing before executing the template
 //    echo '<h1>Hello Pets</h1>';
 
