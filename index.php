@@ -11,6 +11,7 @@ error_reporting(E_ALL);
 //Require
 require_once ('vendor/autoload.php');
 require_once ('model/validate.php');
+require_once ('model/data-layer.php');
 
 
 //Instantiate the F3 Base Class
@@ -178,6 +179,12 @@ $f3->route('GET|POST /mailing-list', function($f3){
             echo "<p>Validation errors</p>";
         }
     }
+
+    $language = getLanguage();
+    $industry = getIndustry();
+
+    $f3->set('languages', $language);
+    $f3->set('industries', $industry);
 
     $view = new Template();
     echo $view->render('views/mailing-list.html');
