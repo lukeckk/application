@@ -100,7 +100,7 @@ $f3->route('GET|POST /apply', function($f3){
 
 //Experience Page
 $f3->route('GET|POST /experience', function($f3){
-    var_dump ( $f3->get('SESSION') );
+//    var_dump ( $f3->get('SESSION') );
 //    // If the form has been posted
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         //Get data from post array
@@ -143,7 +143,7 @@ $f3->route('GET|POST /experience', function($f3){
 
 //Mailing Lists Page
 $f3->route('GET|POST /mailing-list', function($f3){
-    var_dump ( $f3->get('SESSION') );
+//    var_dump ( $f3->get('SESSION') );
 //    // If the form has been posted
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         //Get data from post array
@@ -192,7 +192,7 @@ $f3->route('GET|POST /mailing-list', function($f3){
 
 //Summary Page
 $f3->route('GET|POST /summary', function($f3){
-        var_dump ( $f3->get('SESSION') );
+//        var_dump ( $f3->get('SESSION') );
     //echo below is used for testing before executing the template
 //    echo '<h1>Hello Pets</h1>';
 
