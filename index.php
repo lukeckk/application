@@ -11,6 +11,7 @@ error_reporting(E_ALL);
 //Require
 require_once ('vendor/autoload.php');
 
+
 //Instantiate the F3 Base Class
 $f3 = Base::instance();
 
@@ -37,34 +38,43 @@ $f3->route('GET /home', function(){
 
 //Personal Information Page
 $f3->route('GET|POST /apply', function($f3){
+    $firstName = "";
+    $lastName = "";
 
     // If the form has been posted
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
         //Get data from post array
-        $firstName = $_POST['first'];
-        $lastName = $_POST['last'];
         $email = $_POST['email'];
         $state = $_POST['state'];
         $phone = $_POST['phone'];
 
-        // If the data valid
-        if (true) {
-
-            // Add the data to the session array
-            $f3->set('SESSION.firstName', $firstName);
-            $f3->set('SESSION.lastName', $lastName);
-            $f3->set('SESSION.email', $email);
-            $f3->set('SESSION.state', $state);
-            $f3->set('SESSION.phone', $phone);
-
-            // Send the user to the next form
-            $f3->reroute('experience');
-
-        } else {
-            // Temporary
-            echo "<p>Validation errors</p>";
+        //First and Last name validation
+        if(validName($_POST['first'], $_POST['last'])){
+            $firstName = $_POST['first'];
+            $lastName = $_POST['last'];
         }
+        else{
+            $f3->set('errors["first"]', 'Please enter only alphabet');
+            $f3->set('errors["last"]', 'Please enter only alphabet');
+        }
+
+
+        // Add the data to the session array
+        $f3->set('SESSION.firstName', $firstName);
+        $f3->set('SESSION.lastName', $lastName);
+        $f3->set('SESSION.email', $email);
+        $f3->set('SESSION.state', $state);
+        $f3->set('SESSION.phone', $phone);
+
+        //If there is no error, send the user to the next form, if not, stay on the current form
+        if(empty($f3->get('errors'))){
+            $f3->reroute('experience');
+        }
+
     }
+
+
 
     $view = new Template();
     echo $view->render('views/personal-information.html');
@@ -73,6 +83,8 @@ $f3->route('GET|POST /apply', function($f3){
 
 //Experience Page
 $f3->route('GET|POST /experience', function($f3){
+    echo "Is vardump working? ";
+    var_dump ( $f3->get('SESSION') );
 //    // If the form has been posted
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         //Get data from post array
@@ -105,7 +117,7 @@ $f3->route('GET|POST /experience', function($f3){
 
 //Mailing Lists Page
 $f3->route('GET|POST /mailing-list', function($f3){
-//    var_dump ( $f3->get('SESSION') );
+    var_dump ( $f3->get('SESSION') );
 //    // If the form has been posted
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         //Get data from post array
@@ -148,7 +160,7 @@ $f3->route('GET|POST /mailing-list', function($f3){
 
 //Summary Page
 $f3->route('GET|POST /summary', function($f3){
-//        var_dump ( $f3->get('SESSION') );
+        var_dump ( $f3->get('SESSION') );
     //echo below is used for testing before executing the template
 //    echo '<h1>Hello Pets</h1>';
 
