@@ -39,25 +39,40 @@ $f3->route('GET /home', function(){
 
 //Personal Information Page
 $f3->route('GET|POST /apply', function($f3){
-    $firstName = "";
-    $lastName = "";
+//    $firstName = "";
+//    $lastName = "";
 
     // If the form has been posted
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         //Get data from post array
-        $email = $_POST['email'];
+
         $state = $_POST['state'];
-        $phone = $_POST['phone'];
 
         //First and Last name validation
-        if(validName($_POST['first'], $_POST['last'])){
+        if(isset($_POST['first'], $_POST['last'] ) and validName($_POST['first'], $_POST['last'])){
             $firstName = $_POST['first'];
             $lastName = $_POST['last'];
         }
         else{
-            $f3->set('errors["first"]', 'Please enter only alphabet');
-            $f3->set('errors["last"]', 'Please enter only alphabet');
+            $f3->set('errors["first"]', 'Please enter your name with only alphabets');
+        }
+
+        //Email validation
+        if(isset($_POST['email']) and validEmail($_POST['email'])){
+            $email = $_POST['email'];
+        }
+        else{
+            $f3->set('errors["email"]', 'Please enter a valid email. Eg. JoeLee@gmail.com');
+        }
+
+        //Phone validation
+        if(isset($_POST['phone']) and validPhone($_POST['phone'])){
+            $phone = $_POST['phone'];
+        }
+        else{
+            $f3->set('errors["phone"]', 'Please enter a 10-digit US phone number without space and symbols');
+
         }
 
 
@@ -89,26 +104,36 @@ $f3->route('GET|POST /experience', function($f3){
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         //Get data from post array
         $bio = $_POST['bio'];
-        $link = $_POST['link'];
-        $exp = $_POST['exp'];
         $relocate = $_POST['relocate'];
 
-        // If the data valid
-        if (true) {
-
-            // Add the data to the session array
-            $f3->set('SESSION.bio', $bio);
-            $f3->set('SESSION.link', $link);
-            $f3->set('SESSION.exp', $exp);
-            $f3->set('SESSION.relocate', $relocate);
-
-            // Send the user to the next form
-            $f3->reroute('mailing-list');
-
-        } else {
-            // Temporary
-            echo "<p>Validation errors</p>";
+        //Github url validation
+        if(validGithub($_POST['link'])){
+            $link = $_POST['link'];
         }
+        else{
+            $f3->set('errors["link"]', 'Please enter a valid URL');
+        }
+
+        //Exp validation
+        if(isset($_POST['exp']) and validExperience($_POST['exp'])){
+            $exp = $_POST['exp'];
+        }
+        else{
+            $f3->set('errors["exp"]', 'Please make a selection');
+        }
+
+        // Add the data to the session array
+        $f3->set('SESSION.bio', $bio);
+        $f3->set('SESSION.link', $link);
+        $f3->set('SESSION.exp', $exp);
+        $f3->set('SESSION.relocate', $relocate);
+
+    // Send the user to the next form
+    if(empty($f3->get('errors'))) {
+        $f3->reroute('mailing-list');
+    }
+
+
     }
 
     $view = new Template();

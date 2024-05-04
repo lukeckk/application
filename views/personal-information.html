@@ -39,7 +39,7 @@
     <h3 class="border-bottom border-primary personalHeader">Personal Information</h3>
 
         <div class="p-2">
-            <label for="first" >First Name **</label><br>
+            <label for="first" >First Name</label><br>
             <input type="text" name="first" id="first" class="form-control">
             <check if="{{ isset(@errors['first'])}}">
                 <span class="err">{{ @errors['first'] }}</span>
@@ -48,9 +48,6 @@
         <div class="p-2">
             <label for="last" >Last Name</label><br>
             <input type="text" name="last" id="last" class="form-control">
-            <check if="{{ isset(@errors['last'])}}">
-                <span class="err">{{ @errors['last'] }}</span>
-            </check>
         </div>
         <div id="note" class="p-4 m-4" >
             <p >
@@ -61,6 +58,9 @@
         <div class="p-2 email">
             <label for="email" >Email</label><br>
             <input type="text" name="email" id="email" class="form-control">
+            <check if="{{ isset(@errors['email'])}}">
+                <span class="err">{{ @errors['email'] }}</span>
+            </check>
         </div>
         <div class="p-2">
             <label for="state" >State</label><br>
@@ -121,6 +121,9 @@
         <div class="p-2">
             <label for="phone" >Phone</label><br>
             <input type="text" name="phone" id="phone" class="form-control">
+            <check if="{{ isset(@errors['phone'])}}">
+                <span class="err">{{ @errors['phone'] }}</span>
+            </check>
         </div>
         <div class="p-2">
             <label></label><br>
