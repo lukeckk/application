@@ -41,7 +41,9 @@
         <div class="p-2">
             <label for="first" >First Name</label><br>
             <input type="text" name="first" id="first" class="form-control">
-
+            <check if="{{ isset(@errors['first'])}}">
+                <span class="err">{{ @errors['first'] }}</span>
+            </check>
         </div>
         <div class="p-2">
             <label for="last" >Last Name</label><br>

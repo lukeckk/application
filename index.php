@@ -10,6 +10,7 @@ error_reporting(E_ALL);
 
 //Require
 require_once ('vendor/autoload.php');
+require_once ('model/validate.php');
 
 
 //Instantiate the F3 Base Class
