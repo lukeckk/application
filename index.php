@@ -84,7 +84,6 @@ $f3->route('GET|POST /apply', function($f3){
 
 //Experience Page
 $f3->route('GET|POST /experience', function($f3){
-    echo "Is vardump working? ";
     var_dump ( $f3->get('SESSION') );
 //    // If the form has been posted
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
