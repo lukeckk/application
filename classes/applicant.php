@@ -30,7 +30,7 @@ class Applicant
     /**
      * @return mixed|string
      */
-    public function getFname(): mixed
+    public function getFname()
     {
         return $this->_fname;
     }
@@ -38,7 +38,7 @@ class Applicant
     /**
      * @param mixed|string $fname
      */
-    public function setFname(mixed $fname): void
+    public function setFname(mixed $fname)
     {
         $this->_fname = $fname;
     }
@@ -46,7 +46,7 @@ class Applicant
     /**
      * @return mixed|string
      */
-    public function getLname(): mixed
+    public function getLname()
     {
         return $this->_lname;
     }
@@ -54,7 +54,7 @@ class Applicant
     /**
      * @param mixed|string $lname
      */
-    public function setLname(mixed $lname): void
+    public function setLname(mixed $lname)
     {
         $this->_lname = $lname;
     }
@@ -62,7 +62,7 @@ class Applicant
     /**
      * @return mixed|string
      */
-    public function getEmail(): mixed
+    public function getEmail()
     {
         return $this->_email;
     }
@@ -70,7 +70,7 @@ class Applicant
     /**
      * @param mixed|string $email
      */
-    public function setEmail(mixed $email): void
+    public function setEmail(mixed $email)
     {
         $this->_email = $email;
     }
@@ -78,7 +78,7 @@ class Applicant
     /**
      * @return mixed|string
      */
-    public function getState(): mixed
+    public function getState()
     {
         return $this->_state;
     }
@@ -86,7 +86,7 @@ class Applicant
     /**
      * @param mixed|string $state
      */
-    public function setState(mixed $state): void
+    public function setState(mixed $state)
     {
         $this->_state = $state;
     }
@@ -94,7 +94,7 @@ class Applicant
     /**
      * @return mixed|string
      */
-    public function getPhone(): mixed
+    public function getPhone()
     {
         return $this->_phone;
     }
@@ -102,7 +102,7 @@ class Applicant
     /**
      * @param mixed|string $phone
      */
-    public function setPhone(mixed $phone): void
+    public function setPhone(mixed $phone)
     {
         $this->_phone = $phone;
     }
@@ -118,7 +118,7 @@ class Applicant
     /**
      * @param mixed $github
      */
-    public function setGithub($github): void
+    public function setGithub($github)
     {
         $this->_github = $github;
     }
@@ -134,7 +134,7 @@ class Applicant
     /**
      * @param mixed $experience
      */
-    public function setExperience($experience): void
+    public function setExperience($experience)
     {
         $this->_experience = $experience;
     }
@@ -150,7 +150,7 @@ class Applicant
     /**
      * @param mixed $relocate
      */
-    public function setRelocate($relocate): void
+    public function setRelocate($relocate)
     {
         $this->_relocate = $relocate;
     }
@@ -166,10 +166,12 @@ class Applicant
     /**
      * @param mixed $bio
      */
-    public function setBio($bio): void
+    public function setBio($bio)
     {
         $this->_bio = $bio;
     }
+
+
 
 
 

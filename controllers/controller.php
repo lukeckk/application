@@ -17,15 +17,23 @@ class Controller
 
     function apply()
     {
-        //    $firstName = "";
-//    $lastName = "";
+        $firstName = "";
+        $lastName = "";
+        $email = "";
+        $phone = "";
 
         // If the form has been posted
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-            //Get data from post array
-
             $state = $_POST['state'];
+
+            //Validate checkbox and instantiate class accordingly
+//            if(isset($_POST['mailingCheck'])){
+//                //Applicant subscribed
+//            }
+//            else{
+//                //Applicant
+//            }
 
             //First and Last name validation
             if(isset($_POST['first'], $_POST['last'] ) and Validate::validName($_POST['first'], $_POST['last'])){
@@ -55,11 +63,9 @@ class Controller
 
 
             // Add the data to the session array
-            $this->_f3->set('SESSION.firstName', $firstName);
-            $this->_f3->set('SESSION.lastName', $lastName);
-            $this->_f3->set('SESSION.email', $email);
-            $this->_f3->set('SESSION.state', $state);
-            $this->_f3->set('SESSION.phone', $phone);
+            $applicant = new Applicant($firstName, $lastName, $email, $state, $phone);
+            $this->_f3->set('SESSION.applicant', $applicant);
+
             $this->_f3->set('SESSION.mailingCheck', $_POST['mailingCheck']);
 
             //If there is no error, send the user to the next form, if not, stay on the current form
@@ -110,7 +116,7 @@ class Controller
             if(empty($this->_f3->get('errors')) && $mailingCheck != null) {
                 $this->_f3->reroute('mailing-list');
             }
-            else{
+            else if(empty($this->_f3->get('errors'))){
                 $this->_f3->reroute('summary');
             }
 
