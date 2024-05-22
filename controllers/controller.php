@@ -60,6 +60,7 @@ class Controller
             $this->_f3->set('SESSION.email', $email);
             $this->_f3->set('SESSION.state', $state);
             $this->_f3->set('SESSION.phone', $phone);
+            $this->_f3->set('SESSION.mailingCheck', $_POST['mailingCheck']);
 
             //If there is no error, send the user to the next form, if not, stay on the current form
             if(empty($this->_f3->get('errors'))){
@@ -103,10 +104,14 @@ class Controller
             $this->_f3->set('SESSION.link', $link);
             $this->_f3->set('SESSION.exp', $exp);
             $this->_f3->set('SESSION.relocate', $relocate);
+            $mailingCheck = $this->_f3->get('SESSION.mailingCheck');
 
             // Send the user to the next form
-            if(empty($this->_f3->get('errors'))) {
+            if(empty($this->_f3->get('errors')) && $mailingCheck != null) {
                 $this->_f3->reroute('mailing-list');
+            }
+            else{
+                $this->_f3->reroute('summary');
             }
 
 
@@ -176,6 +181,7 @@ class Controller
 //    //Render a view page
         $view = new Template();
         echo $view->render('views/summary.html');
+
 
     }
 }
