@@ -6,11 +6,13 @@
 */
 
 // A function that gets the meals for the Diner app
+class DataLayer
+{
+    static function getLanguage(){
+        return array('JavaScript', 'PHP', 'Java', 'Python', 'HTML', 'CSS', 'ReactJS', 'NodeJS');
+    }
 
-function getLanguage(){
-    return array('JavaScript', 'PHP', 'Java', 'Python', 'HTML', 'CSS', 'ReactJS', 'NodeJS');
-}
-
-function getIndustry(){
-    return array('Saas', 'Health tech', 'Ag tech', 'HR tech', 'Industrial tech', 'Cybersecurity');
+    static function getIndustry(){
+        return array('Saas', 'Health tech', 'Ag tech', 'HR tech', 'Industrial tech', 'Cybersecurity');
+    }
 }
