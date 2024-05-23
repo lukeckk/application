@@ -38,21 +38,28 @@
 <div class="summaryBodyContainer p-4">
     <div class="summaryLeftBody p-2">
         <div class="container border border-dark p-2 rounded">
-            <p class="border-bottom border-secondary p-2">Name: {{ @SESSION.applicant->getFname() }} {{ @SESSION.applicant->getLname() }}</p>
+            <p class="border-bottom border-secondary p-2">
+                Name: {{ @SESSION.applicant->getFname() }} {{ @SESSION.applicant->getLname() }}
+            </p>
             <p class="border-bottom border-secondary p-2">Email: {{ @SESSION.applicant->getEmail() }}</p>
             <p class="border-bottom border-secondary p-2">State: {{ @SESSION.applicant->getState() }}</p>
             <p class="border-bottom border-secondary p-2">Phone: {{ @SESSION.applicant->getPhone() }}</p>
-            <p class="border-bottom border-secondary p-2">Github link: {{ @SESSION.link }}</p>
-            <p class="border-bottom border-secondary p-2">Experience: {{ @SESSION.exp }} years</p>
-            <p class="border-bottom border-secondary p-2">Willing to Relocate: {{ @SESSION.relocate }}</p>
-            <p class="p-2">Mailing lists: {{ @SESSION.language }}, {{ @SESSION.industry}}</p>
+            <p class="border-bottom border-secondary p-2">Github link: {{ @SESSION.applicant->getGithub() }}</p>
+            <p class="border-bottom border-secondary p-2">Experience: {{ @SESSION.applicant->getExperience() }} years</p>
+            <p class="border-bottom border-secondary p-2">Willing to Relocate: {{ @SESSION.applicant->getRelocate() }}</p>
+            <check if="{{ isset(@SESSION.mailingCheck) }}">
+                <p class="p-2">
+                    Mailing lists: {{ implode(', ', @SESSION.subscribedApplicant->getSelectionsVerticals()) }},
+                    {{ implode(', ', @SESSION.subscribedApplicant->getSelectionsJobs()) }}
+                </p>
+            </check>
         </div>
     </div>
 
     <div class="summaryRightBody p-2">
         <img src="images/profile.jpeg" alt="profile logo" width="650" height="500" class="rounded mx-auto d-block">
         <h3 class="p-2">Summary</h3>
-        <p class="p-2">{{ @SESSION.bio }}</p>
+        <p class="p-2">{{ @SESSION.applicant->getBio() }}</p>
     </div>
 
     <div class="submitButton">

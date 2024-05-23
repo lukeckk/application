@@ -82,8 +82,13 @@ class Controller
 
     function experience()
     {
+        $bio = "";
+        $relocate = "";
+        $link = "";
+        $exp = "";
+
         //    var_dump ( $f3->get('SESSION') );
-//    // If the form has been posted
+        // If the form has been posted
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             //Get data from post array
             $bio = $_POST['bio'];
@@ -106,10 +111,11 @@ class Controller
             }
 
             // Add the data to the session array
-            $this->_f3->set('SESSION.bio', $bio);
-            $this->_f3->set('SESSION.link', $link);
-            $this->_f3->set('SESSION.exp', $exp);
-            $this->_f3->set('SESSION.relocate', $relocate);
+            $this->_f3->get('SESSION.applicant')->setBio($bio);
+            $this->_f3->get('SESSION.applicant')->setRelocate($relocate);
+            $this->_f3->get('SESSION.applicant')->setGithub($link);
+            $this->_f3->get('SESSION.applicant')->setExperience($exp);
+
             $mailingCheck = $this->_f3->get('SESSION.mailingCheck');
 
             // Send the user to the next form
@@ -130,32 +136,63 @@ class Controller
 
     function mailing()
     {
-        //    var_dump ( $f3->get('SESSION') );
-//    // If the form has been posted
+        $language = [];
+        $industry = [];
+
+        //retrieving applicant class
+        $applicant = $this->_f3->get('SESSION.applicant');
+        $firstName = $applicant->getFname();
+        $lastName = $applicant->getLname();
+        $email = $applicant->getEmail();
+        $state = $applicant->getState();
+        $phone = $applicant->getPhone();
+        $github = $applicant->getGithub();
+        $exp = $applicant->getExperience();
+        $relocate = $applicant->getRelocate();
+        $bio = $applicant->getBio();
+
+
+        // var_dump ( $f3->get('SESSION') );
+        // If the form has been posted
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             //Get data from post array
-//        $language = $_POST['language'];
-//        $industry = $_POST['industry'];
+            // $language = $_POST['language'];
+            //$industry = $_POST['industry'];
 
             // Get the data from the post array language
-            if (isset($_POST['language']))
-                $language = implode(", ", $_POST['language']);
-            else
-                $language = "None selected";
+            if (isset($_POST['language']) ) {
+                $language = $_POST['language'];
+            }
+            else {
+                $language = [];
+            }
 
             // Get the data from the post array language
-            if (isset($_POST['industry']))
-                $industry = implode(", ", $_POST['industry']);
-            else
-                $industry = "None selected";
+            if (isset($_POST['industry'])) {
+                $industry = $_POST['industry'];
+            }
+            else {
+                $industry = [];
+            }
 
 
             // If the data valid
             if (true) {
+                $subscribedApplicant = new Applicant_SubscribedToLists();
+                $this->_f3->set('SESSION.subscribedApplicant', $subscribedApplicant);
 
                 // Add the data to the session array
-                $this->_f3->set('SESSION.language', $language);
-                $this->_f3->set('SESSION.industry', $industry);
+                $this->_f3->get('SESSION.subscribedApplicant')->setSelectionsVerticals($language);
+                $this->_f3->get('SESSION.subscribedApplicant')->setSelectionsJobs($industry);
+                $this->_f3->get('SESSION.subscribedApplicant')->setFname($firstName);
+                $this->_f3->get('SESSION.subscribedApplicant')->setLname($lastName);
+                $this->_f3->get('SESSION.subscribedApplicant')->setEmail($email);
+                $this->_f3->get('SESSION.subscribedApplicant')->setState($state);
+                $this->_f3->get('SESSION.subscribedApplicant')->setPhone($phone);
+                $this->_f3->get('SESSION.subscribedApplicant')->setGithub($github);
+                $this->_f3->get('SESSION.subscribedApplicant')->setExperience($exp);
+                $this->_f3->get('SESSION.subscribedApplicant')->setRelocate($relocate);
+                $this->_f3->get('SESSION.subscribedApplicant')->setBio($bio);
 
 
                 // Send the user to the next form
@@ -167,11 +204,19 @@ class Controller
             }
         }
 
+        //repeat checkboxes
         $language = DataLayer::getLanguage();
         $industry = DataLayer::getIndustry();
-
         $this->_f3->set('languages', $language);
         $this->_f3->set('industries', $industry);
+
+        // Convert arrays to comma-separated strings for display
+        $languageString = implode(', ', $language);
+        $industryString = implode(', ', $industry);
+
+        // Set these strings to the hive for use in the view
+        $this->_f3->set('selectedLanguage', $languageString);
+        $this->_f3->set('selectedIndustry', $industryString);
 
         $view = new Template();
         echo $view->render('views/mailing-list.html');
@@ -180,7 +225,10 @@ class Controller
 
     function summary()
     {
-        //        var_dump ( $f3->get('SESSION') );
+        echo "<pre>";
+        var_dump ( $this->_f3->get('SESSION') );
+        echo "</pre>";
+
         //echo below is used for testing before executing the template
 //    echo '<h1>Hello Pets</h1>';
 

@@ -38,7 +38,7 @@ class Applicant
     /**
      * @param mixed|string $fname
      */
-    public function setFname(mixed $fname)
+    public function setFname($fname)
     {
         $this->_fname = $fname;
     }
@@ -54,7 +54,7 @@ class Applicant
     /**
      * @param mixed|string $lname
      */
-    public function setLname(mixed $lname)
+    public function setLname($lname)
     {
         $this->_lname = $lname;
     }
@@ -70,7 +70,7 @@ class Applicant
     /**
      * @param mixed|string $email
      */
-    public function setEmail(mixed $email)
+    public function setEmail($email)
     {
         $this->_email = $email;
     }
@@ -86,7 +86,7 @@ class Applicant
     /**
      * @param mixed|string $state
      */
-    public function setState(mixed $state)
+    public function setState($state)
     {
         $this->_state = $state;
     }
@@ -102,7 +102,7 @@ class Applicant
     /**
      * @param mixed|string $phone
      */
-    public function setPhone(mixed $phone)
+    public function setPhone($phone)
     {
         $this->_phone = $phone;
     }
