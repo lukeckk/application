@@ -61,12 +61,24 @@ class Controller
 
             }
 
+            //Mailing subscription check
+            if(isset($_POST['mailingCheck'])){
+                //post to subscribed applicant session
+                $subscribedApplicant = new Applicant_SubscribedToLists($firstName, $lastName, $email, $state, $phone);
+                $this->_f3->set('SESSION.subscribedApplicant', $subscribedApplicant);
+            }
+            else{
+                //post to applicant session
+                $applicant = new Applicant($firstName, $lastName, $email, $state, $phone);
+                $this->_f3->set('SESSION.applicant', $applicant);
+            }
 
-            // Add the data to the session array
-            $applicant = new Applicant($firstName, $lastName, $email, $state, $phone);
-            $this->_f3->set('SESSION.applicant', $applicant);
 
-            $this->_f3->set('SESSION.mailingCheck', $_POST['mailingCheck']);
+//            // Add the data to the session array
+//            $applicant = new Applicant($firstName, $lastName, $email, $state, $phone);
+//            $this->_f3->set('SESSION.applicant', $applicant);
+
+            $this->_f3->set('SESSION.mailingCheck', $_POST['mailingCheck']); //storing in the session for next method
 
             //If there is no error, send the user to the next form, if not, stay on the current form
             if(empty($this->_f3->get('errors'))){
@@ -86,8 +98,11 @@ class Controller
         $relocate = "";
         $link = "";
         $exp = "";
+            echo "<pre>";
+            var_dump ( $this->_f3->get('SESSION') );
+            echo "</pre>";
 
-        //    var_dump ( $f3->get('SESSION') );
+
         // If the form has been posted
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             //Get data from post array
@@ -110,13 +125,22 @@ class Controller
                 $this->_f3->set('errors["exp"]', 'Please make a selection');
             }
 
-            // Add the data to the session array
-            $this->_f3->get('SESSION.applicant')->setBio($bio);
-            $this->_f3->get('SESSION.applicant')->setRelocate($relocate);
-            $this->_f3->get('SESSION.applicant')->setGithub($link);
-            $this->_f3->get('SESSION.applicant')->setExperience($exp);
-
+            //mailing from apply page
             $mailingCheck = $this->_f3->get('SESSION.mailingCheck');
+
+            // Add the data to the session array
+            if(isset($mailingCheck)){
+                $this->_f3->get('SESSION.subscribedApplicant')->setBio($bio);
+                $this->_f3->get('SESSION.subscribedApplicant')->setRelocate($relocate);
+                $this->_f3->get('SESSION.subscribedApplicant')->setGithub($link);
+                $this->_f3->get('SESSION.subscribedApplicant')->setExperience($exp);
+            }
+            else{
+                $this->_f3->get('SESSION.applicant')->setBio($bio);
+                $this->_f3->get('SESSION.applicant')->setRelocate($relocate);
+                $this->_f3->get('SESSION.applicant')->setGithub($link);
+                $this->_f3->get('SESSION.applicant')->setExperience($exp);
+            }
 
             // Send the user to the next form
             if(empty($this->_f3->get('errors')) && $mailingCheck != null) {
@@ -139,8 +163,17 @@ class Controller
         $language = [];
         $industry = [];
 
+        $mailingCheck = $this->_f3->get('SESSION.mailingCheck');
+
+        // Add the data to the session array
+        if(isset($mailingCheck)) {
+            $applicant = $this->_f3->get('SESSION.subscribedApplicant');
+        }
+        else{
+            $applicant = $this->_f3->get('SESSION.applicant');
+        }
+
         //retrieving applicant class
-        $applicant = $this->_f3->get('SESSION.applicant');
         $firstName = $applicant->getFname();
         $lastName = $applicant->getLname();
         $email = $applicant->getEmail();
@@ -178,8 +211,8 @@ class Controller
 
             // If the data valid
             if (true) {
-                $subscribedApplicant = new Applicant_SubscribedToLists();
-                $this->_f3->set('SESSION.subscribedApplicant', $subscribedApplicant);
+//                $subscribedApplicant = new Applicant_SubscribedToLists();
+//                $this->_f3->set('SESSION.subscribedApplicant', $subscribedApplicant);
 
                 // Add the data to the session array
                 $this->_f3->get('SESSION.subscribedApplicant')->setSelectionsVerticals($language);
@@ -228,6 +261,8 @@ class Controller
         echo "<pre>";
         var_dump ( $this->_f3->get('SESSION') );
         echo "</pre>";
+        $this->_f3->set('user', $this->_f3->get('SESSION.mailingCheck') !== null ? $this->_f3->get('SESSION.subscribedApplicant') : $this->_f3->get('SESSION.applicant'));
+
 
         //echo below is used for testing before executing the template
 //    echo '<h1>Hello Pets</h1>';
