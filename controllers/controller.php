@@ -98,9 +98,9 @@ class Controller
         $relocate = "";
         $link = "";
         $exp = "";
-            echo "<pre>";
-            var_dump ( $this->_f3->get('SESSION') );
-            echo "</pre>";
+//            echo "<pre>";
+//            var_dump ( $this->_f3->get('SESSION') );
+//            echo "</pre>";
 
 
         // If the form has been posted
